@@ -1,0 +1,33 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <string>
+#include <unordered_set>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+int main() {
+    std::unordered_set<string> numbers;
+    string line1, line2;
+    while (cin >> line1) {
+        if (line1 == "#") {
+            break;
+        } else {
+            cin >> line2;
+            if (line1 == "+") {
+                numbers.insert(line2);
+            } else if (line1 == "-") {
+                numbers.erase(line2);
+            } else {
+                if (numbers.find(line2) == numbers.end()) {
+                    cout << "NO" << '\n';
+                } else {
+                    cout << "YES" << '\n';
+                }
+            }
+        }
+    }
+}

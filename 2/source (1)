@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+int main() {
+    int i;
+    cout << "\t";
+    for (i = 0; i < 10; i++) {
+        cout << std::hex << i << "\t";
+    }
+    cout << "A" << "\t" << "B" << "\t" << "C" << "\t" << "D" << "\t" << "E" << "\t" << "F" << "\n";
+    for (i = 32; i < 128; i++) {
+        if (i % 16 == 0) {
+            cout << i / 16 << "\t";
+        }
+        if (i % 16 == 15) {
+            cout << static_cast<char> (i) << "\n";
+        } else {
+            cout << static_cast<char> (i) << "\t";
+        }
+    }
+}

@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+
+using std::cin;
+using std::cout;
+
+int main() {
+    std::string line1, line2;
+    cin >> line1;
+    cin >> line2;
+    char result = '=';
+    for (int i = 0; i < 100; i++) {
+        if (static_cast<int>(line1[i]) > static_cast<int>(line2[i])) {
+            result = '>';
+            break;
+        } else if (static_cast<int>(line1[i]) < static_cast<int>(line2[i])) {
+            result = '<';
+            break;
+        }
+    }
+    cout << result;
+}

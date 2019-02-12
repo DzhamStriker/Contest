@@ -1,0 +1,15 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using std::cin;
+using std::cout;
+
+void reverse(std::vector<int>& numbers) {
+    std::vector<int> result;
+    for (int i = numbers.size() - 1; i > -1; i--) {
+        result.push_back(numbers.at(i));
+    }
+    numbers = result;
+}

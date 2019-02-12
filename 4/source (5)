@@ -1,0 +1,19 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <string>
+#include <set>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+int main() {
+    std::set<int> numbers;
+    int num;
+    while (cin >> num) {
+        numbers.insert(num);
+    }
+    cout << numbers.size();
+}

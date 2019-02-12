@@ -1,0 +1,24 @@
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+
+using std::cin;
+using std::cout;
+
+std::vector<std::vector<int>> transpose(const std::vector<std::vector<int>>& matrix) {
+    int i, j, size1, size2;
+    std::vector<int> line;
+    std::vector<std::vector<int>> result;
+    size1 = matrix.size();
+    size2 = matrix.at(0).size();
+    for (j = 0; j < size2; j++) {
+        for (i = 0; i < size1; i++) {
+            line.push_back(matrix.at(i).at(j));
+        }
+        result.push_back(line);
+        line.clear();
+    }
+    return result;
+}

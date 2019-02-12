@@ -1,0 +1,76 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+struct student {
+    string name;
+    string surname;
+    int day;
+    int month;
+    int year;
+};
+
+bool compare_entry1(const student & student1, const student & student2) {
+    if (student1.surname != student2.surname) {
+        return (student1.surname < student2.surname);
+    } else if (student1.name != student2.name) {
+        return (student1.name < student2.name);
+    } else if (student1.year != student2.year) {
+        return (student1.year < student2.year);
+    } else if (student1.month != student2.month) {
+        return (student1.month < student2.month);
+    }
+    return (student1.day < student2.day);
+}
+
+bool compare_entry2(const student & student1, const student & student2) {
+    if (student1.year != student2.year) {
+        return (student1.year < student2.year);
+    } else if (student1.month != student2.month) {
+        return (student1.month < student2.month);
+    } else if (student1.day != student2.day) {
+        return (student1.day < student2.day);
+    } else if (student1.surname != student2.surname) {
+        return (student1.surname < student2.surname);
+    }
+    return (student1.name < student2.name);
+}
+
+int main() {
+    int N;
+    string call, name1, name2, day, month, year, date;
+    std::vector<student> students;
+    student stud;
+    cin >> N;
+    for (int i = 0; i < N; i++) {
+        cin >> name1;
+        cin >> name2;
+        cin >> day;
+        cin >> month;
+        cin >> year;
+        stud.name = name1;
+        stud.surname = name2;
+        stud.day = std::stoi(day);
+        stud.month = std::stoi(month);
+        stud.year = std::stoi(year);
+        students.push_back(stud);
+    }
+    cin >> call;
+    if (call == "name") {
+        std::sort(students.begin(), students.end(), compare_entry1);
+    } else {
+        std::sort(students.begin(), students.end(), compare_entry2);
+    }
+    for (int i = 0; i < N; i++) {
+        cout << students[i].name << ' '
+             << students[i].surname << ' '
+             << students[i].day << '.'
+             << students[i].month << '.'
+             << students[i].year << '\n';
+    }
+}

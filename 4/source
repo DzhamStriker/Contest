@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+struct student {
+    string name;
+    string date;
+};
+int main() {
+    int N, M, number;
+    string call, name1, name2, day, month, year, name, date;
+    std::vector<student> students;
+    std::vector<string> print;
+    student stud;
+    cin >> N;
+    for (int i = 0; i < N; i++) {
+        cin >> name1;
+        cin >> name2;
+        cin >> day;
+        cin >> month;
+        cin >> year;
+        stud.name = name1 + ' ' + name2;
+        stud.date = day + '.' + month + '.' + year;
+        students.push_back(stud);
+    }
+    cin >> M;
+    for (int i = 0; i < M; i++) {
+        cin >> call;
+        cin >> number;
+        if (call == "name") {
+            if (number > 0 && number <= N) {
+                print.push_back(students[number - 1].name);
+            } else {
+                print.push_back("bad request");
+            }
+        } else if (call == "date") {
+            if (number > 0 && number <= N) {
+                print.push_back(students[number - 1].date);
+            } else {
+                print.push_back("bad request");
+            }
+        } else {
+            print.push_back("bad request");
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        cout << print[i] << '\n';
+    }
+}

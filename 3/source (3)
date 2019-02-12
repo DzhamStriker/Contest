@@ -1,0 +1,20 @@
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+
+using std::cin;
+using std::cout;
+
+void transpose(std::vector<std::vector<int>>& matrix) {
+    int i, j, size, element;
+    size = matrix.size();
+    for (i = 0; i < size - 1; i++) {
+        for (j = i + 1; j < size; j++) {
+            element = matrix.at(i).at(j);
+            matrix.at(i).at(j) = matrix.at(j).at(i);
+            matrix.at(j).at(i) = element;
+        }
+    }
+}

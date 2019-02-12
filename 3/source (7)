@@ -1,0 +1,48 @@
+#include <iostream>
+
+using std::cout;
+using std::cin;
+
+int main() {
+    int day, hour, minute, dr, hr, mr, N, time;
+    int minim;
+    cin >> day >> hour >> minute;
+    cin >> N;
+    cin >> dr >> hr >> mr;
+    if (dr == 0) {
+        if ((hr * 60 + mr) < (hour * 60 + minute)) {
+            dr = day + 1;
+        } else {
+            dr = day;
+        }
+    }
+    if ((dr * 24 * 60 + hr * 60 + mr) < (day * 24 * 60 + hour * 60 + minute)) {
+        dr += 7;
+    }
+    minim = (dr * 24 * 60 + hr * 60 + mr) - (day * 24 * 60 + hour * 60 + minute);
+    for (int i = 0; i < N - 1; i++) {
+        cin >> dr >> hr >> mr;
+        if (dr == 0) {
+            if ((hr * 60 + mr) < (hour * 60 + minute)) {
+                dr = day + 1;
+            } else {
+                dr = day;
+            }
+        }
+        if ((dr * 24 * 60 + hr * 60 + mr) < (day * 24 * 60 + hour * 60 + minute)) {
+            dr += 7;
+        }
+        if ((dr * 24 * 60 + hr * 60 + mr) - (day * 24 * 60 + hour * 60 + minute) < minim) {
+            minim = (dr * 24 * 60 + hr * 60 + mr) - (day * 24 * 60 + hour * 60 + minute);
+        }
+    }
+    time = day * 24 * 60 + hour * 60 + minute + minim;
+    dr = time / (24 * 60);
+    time = time % (24 * 60);
+    hr = time / 60;
+    mr = time % 60;
+    if (dr > 7) {
+        dr = dr % 7;
+    }
+    cout << dr << ' ' << hr << ' ' << mr;
+}

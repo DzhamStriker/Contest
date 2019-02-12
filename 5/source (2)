@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <queue>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+int main() {
+    std::queue<int> numbers;
+    int number;
+    string call;
+    while (cin >> call) {
+        if (call == "push") {
+            cin >> number;
+            numbers.push(number);
+            cout << "ok" << '\n';
+        } else if (call == "pop") {
+            if (numbers.size() > 0) {
+                cout << numbers.front() << '\n';
+                numbers.pop();
+            } else {
+                cout << "error" << '\n';
+            }
+        } else if (call == "front") {
+            if (numbers.size() > 0) {
+                cout << numbers.front() << '\n';
+            } else {
+                cout << "error" << '\n';
+            }
+        } else if (call == "size") {
+            cout << numbers.size() << '\n';
+        } else if (call == "clear") {
+            numbers = std::queue<int>();
+            cout << "ok" << '\n';
+        } else if (call == "exit") {
+            cout << "bye" << '\n';
+            break;
+        }
+    }
+}

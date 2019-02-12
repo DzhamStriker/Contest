@@ -1,0 +1,29 @@
+#include<algorithm>
+#include<iostream>
+#include<string>
+#include<math.h>
+#include<vector>
+
+using namespace std;
+
+int main() {
+    long long int result, base;
+    int power;
+    result = 1;
+    cin >> base >> power;
+    while (power > 0) {
+        if (power % 2 == 0) {
+            power = power / 2;
+            base = base * base;
+            base = base % (1000000007);
+        } else {
+            power = power - 1;
+            result = result * base;
+            power = power / 2;
+            base = base * base;
+            result = result % (1000000007);
+            base = base % (1000000007);
+        }
+    }
+    cout << result;
+}

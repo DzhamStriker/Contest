@@ -1,0 +1,23 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <string>
+#include <set>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+int main() {
+    std::set<int> numbers;
+    int num;
+    while (cin >> num) {
+        if (numbers.find(num) != numbers.end()) {
+            cout << "YES" << '\n';
+        } else {
+            cout << "NO" << '\n';
+        }
+        numbers.insert(num);
+    }
+}

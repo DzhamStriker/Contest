@@ -1,0 +1,16 @@
+#include <iostream>
+#include <math.h>
+
+using std::cin;
+using std::cout;
+
+int main() {
+    int n, a;
+    cin >> n;
+    cin >> a;
+    double result = 0;
+    for (int i = n; i > 0; i--) {
+        result = sqrt(result + a * i);
+    }
+    cout << result;
+}

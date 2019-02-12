@@ -1,0 +1,25 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using std::cin;
+using std::cout;
+
+bool is_symmetric(const std::vector<std::vector<int>>& matrix) {
+    int size = matrix.size();
+    int result = 1;
+    for (int i = 1; i < size; i++) {
+        for (int j = i; j < size; j++) {
+            if (matrix[i - 1][j] != matrix[j][i - 1]) {
+                result = 0;
+                break;
+            }
+        }
+    }
+    if (result == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}

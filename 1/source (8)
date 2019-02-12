@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+
+using std::cin;
+using std::cout;
+
+int main() {
+    int N, K, M, numOfIngots;
+    int numOfDetails = 0;
+    cin >> N >> K >> M;
+    int rest = N;
+    if (K >= M) {
+        while (rest >= K) {
+            numOfIngots = rest / K;
+            rest = rest % K;
+            numOfDetails += numOfIngots * (K / M);
+            rest += numOfIngots * (K % M);
+        }
+    }
+    cout << numOfDetails;
+}

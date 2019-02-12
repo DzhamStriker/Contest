@@ -1,0 +1,45 @@
+#include<iostream>
+#include<stack>
+#include<string>
+
+using namespace std;
+
+bool ArePair(char opening, char closing) {
+    if (opening == '(' && closing == ')') {
+        return true;
+    } else if (opening == '{' && closing == '}') {
+        return true;
+    } else if (opening == '[' && closing == ']') {
+        return true;
+    }
+    return false;
+}
+
+bool isRight(string sequence) {
+    stack<char>  s;
+    for (int i = 0; i < sequence.length(); i++) {
+        if (sequence[i] == '(' || sequence[i] == '{' || sequence[i] == '[') {
+            s.push(sequence[i]);
+        } else if (sequence[i] == ')' || sequence[i] == '}' || sequence[i] == ']') {
+            if (s.empty() || !ArePair(s.top(), sequence[i])) {
+                return false;
+            } else {
+                s.pop();
+            }
+        }
+    }
+    if (s.empty()) {
+        return true;
+    }
+    return false;
+}
+
+int main() {
+    string line;
+    cin >> line;
+    if (isRight(line)) {
+        cout << "yes";
+    } else {
+        cout << "no";
+    }
+}

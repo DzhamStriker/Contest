@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+
+using std::cin;
+using std::cout;
+
+std::string ExtractDigits(const std::string& s) {
+    std::string result;
+    for (int i = 0; i < s.length(); i++) {
+        if (static_cast<char> (s[i]) >= 48 && static_cast<char> (s[i]) <= 57) {
+            result.push_back(s[i]);
+        }
+    }
+    return result;
+}

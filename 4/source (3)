@@ -1,0 +1,36 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::string;
+
+struct record {
+    long long int sum;
+    int number;
+};
+
+int main() {
+    int N;
+    string name, number;
+    std::map<string, record> result;
+    cin >> N;
+    for (int i = 0; i < N; i++) {
+        cin >> name;
+        cin >> number;
+        if (result.find(name) == result.end()) {
+            record student;
+            student.sum = stoll(number);
+            student.number = 1;
+            result[name] = student;
+            cout << number << '\n';
+        } else {
+            result[name].sum += stoll(number);
+            result[name].number++;
+            cout << result[name].sum / result[name].number << '\n';
+        }
+    }
+}

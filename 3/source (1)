@@ -1,0 +1,18 @@
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+
+using std::cin;
+using std::cout;
+
+void swap_columns(std::vector<std::vector<int>>& matrix, size_t i, size_t j) {
+    int k, size, element;
+    size = matrix.size();
+    for (k = 0; k < size; k++) {
+        element = matrix.at(k).at(i);
+        matrix.at(k).at(i) = matrix.at(k).at(j);
+        matrix.at(k).at(j) = element;
+    }
+}

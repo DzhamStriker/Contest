@@ -1,0 +1,18 @@
+#include <iostream>
+
+using std::cin;
+using std::cout;
+using std::string;
+
+int main() {
+    int number, rest;
+    cin >> number;
+    int result = 0;
+    int part = number;
+    while (part > 0) {
+        rest = part % 10;
+        result += rest;
+        part = part / 10;
+    }
+    cout << result;
+}

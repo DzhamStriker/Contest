@@ -1,0 +1,27 @@
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+
+using std::cin;
+using std::cout;
+
+std::pair<size_t, size_t> max_element(const std::vector<std::vector<int>>& matrix) {
+    int i, j, line, column, size1, size2, max;
+    size1 = matrix.size();
+    size2 = matrix.at(0).size();
+    max = matrix.at(0).at(0);
+    line = 0;
+    column = 0;
+    for (i = 0; i < size1; i++) {
+        for (j = 0; j < size2; j++) {
+            if (matrix.at(i).at(j) > max) {
+                max = matrix.at(i).at(j);
+                line = i;
+                column = j;
+            }
+        }
+    }
+    return std::pair<size_t, size_t> (line, column);
+}
