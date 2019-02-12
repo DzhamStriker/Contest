@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <valarray>
+
+int max_element2(std::vector<int> &numbers, int begin, int end) {
+    if (begin == end) {
+        return numbers[begin];
+    } else {
+        int number = (end - begin) / 2;
+        int n1 = max_element2(numbers, begin, begin + number);
+        int n2 = max_element2(numbers, begin + number + 1, end);
+        if (n1 > n2) {
+            return n1;
+        } else {
+            return n2;
+        }
+    }
+}
+
+int max_element(std::vector<int> &numbers) {
+    return max_element2(numbers, 0, numbers.size() - 1);
+}

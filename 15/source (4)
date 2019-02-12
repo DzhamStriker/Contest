@@ -1,0 +1,36 @@
+#include "writer.h"
+
+class BufferedWriter : Writer {
+private:
+    size_t size;
+    char * chars;
+    size_t j;
+
+public:
+    BufferedWriter(size_t s) {
+        size = s;
+        chars = new char[s];
+        j = 0;
+    }
+
+    void Write(const char * data, size_t len) {
+        size_t i = 0;
+        for (; i < len;) {
+            if (j == size) {
+                this->Writer::Write(chars, size);
+                j = 0;
+            } else {
+                chars[j] = data[i];
+                j++;
+                i++;
+            }
+        }
+    }
+
+    ~BufferedWriter() {
+        if (j != 0) {
+            this->Writer::Write(chars, j);
+        }
+        delete[] chars;
+    }
+};

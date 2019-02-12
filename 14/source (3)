@@ -1,0 +1,34 @@
+void clean_matrix() {
+    for (size_t i = 0; i != rows; i++) {
+        delete[] data[i];
+    }
+    delete[] data;
+}
+
+Matrix(const Matrix<T> & matrix) {
+    rows = matrix.GetRows();
+    columns = matrix.GetColumns();
+    data = new T *[rows];
+    for (size_t i = 0; i != rows; i++)
+        data[i] = new T[columns];
+    for (size_t i = 0; i != rows; i++) {
+        for (size_t j = 0; j != columns; j++) {
+            data[i][j] = matrix[i][j];
+        }
+    }
+}
+
+Matrix operator =(const Matrix<T> & matrix) {
+    this->clean_matrix();
+    rows = matrix.GetRows();
+    columns = matrix.GetColumns();
+    data = new T *[rows];
+    for (size_t i = 0; i != rows; i++)
+        data[i] = new T[columns];
+    for (size_t i = 0; i != rows; i++) {
+        for (size_t j = 0; j != columns; j++) {
+            data[i][j] = matrix[i][j];
+        }
+    }
+    return *this;
+}

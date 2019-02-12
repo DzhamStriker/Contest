@@ -1,0 +1,75 @@
+class con: public Expression {
+private:
+    int x;
+
+public:
+    con(int a) {
+        x = a;
+    }
+    int Evaluate() const {
+        return x;
+    }
+    std::string ToString() const {
+        return std::to_string(x);
+    }
+};
+
+class sum : public Expression {
+private:
+    ExpressionPtr x;
+    ExpressionPtr y;
+
+public:
+    sum(ExpressionPtr a, ExpressionPtr b) : x(a), y(b) {}
+
+    int Evaluate() const {
+        return x->Evaluate() + y->Evaluate();
+    }
+    std::string ToString() const {
+        return (x->ToString() + " + " + y->ToString());
+    }
+};
+
+class product : public Expression {
+private:
+    ExpressionPtr x;
+    ExpressionPtr y;
+
+public:
+    product(ExpressionPtr a, ExpressionPtr b) : x(a), y(b) {}
+
+    int Evaluate() const {
+        return x->Evaluate() * y->Evaluate();
+    }
+    std::string ToString() const {
+        std::string e1 = x->ToString();
+        std::string e2 = y->ToString();
+        size_t summ = e1.find('+');
+        size_t left = e1.find('(');
+        if (summ != -1) {
+            if (left == -1 || (left != -1 && (summ < left || e1.rfind('+') > e1.rfind(')')))) {
+                e1 = "(" + e1 + ")";
+            }
+        }
+        summ = e2.find('+');
+        left = e2.find('(');
+        if (summ != -1) {
+            if (left == -1 || (left != -1 && (summ < left || e2.rfind('+') > e2.rfind(')')))) {
+                e2 = "(" + e2 + ")";
+            }
+        }
+        return e1 + " * " + e2;
+    }
+};
+
+ExpressionPtr Const(int a) {
+    return ExpressionPtr(new con(a));
+}
+
+ExpressionPtr Sum(const ExpressionPtr& a, const ExpressionPtr& b) {
+    return ExpressionPtr(new sum(a, b));
+}
+
+ExpressionPtr Product(const ExpressionPtr& a, const ExpressionPtr& b) {
+    return ExpressionPtr(new product(a, b));
+}

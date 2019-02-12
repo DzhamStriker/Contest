@@ -1,0 +1,14 @@
+#include <algorithm>
+#include <vector>
+
+template <typename T>
+void process(const std::vector<T>& data) {
+    std::vector<T> result(data.size());
+    auto filtered = result.begin();
+    auto last_filtered = std::copy_if(
+        data.begin(),
+        data.end(),
+        filtered,
+        [](const T& x) { return x > 0; });
+    print_results(filtered, last_filtered);
+}

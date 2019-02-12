@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+long long sum_seq2(std::vector<int> &numbers, int begin, int end) {
+    if (begin == end) {
+        return numbers[begin];
+    } else {
+        int number = (end - begin) / 2;
+        long long n1 = sum_seq2(numbers, begin, begin + number);
+        long long n2 = sum_seq2(numbers, begin + number + 1, end);
+        return n1 + n2;
+    }
+}
+
+long long sum_seq(std::vector<int> &numbers) {
+    return sum_seq2(numbers, 0, numbers.size() - 1);
+}

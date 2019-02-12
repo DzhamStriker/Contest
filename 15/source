@@ -1,0 +1,35 @@
+# define PI 3.14159
+
+class Figure {
+public:
+    Figure() {}
+
+    double virtual Area() const {
+        return 0.;
+    }
+
+    virtual ~Figure() {
+    }
+};
+
+class Circle : public Figure {
+private:
+    double radius;
+public:
+    Circle(double r = 0) : Figure(), radius(r) {}
+
+    double Area() const {
+        return static_cast<double>(PI * radius * radius);
+    }
+};
+
+class Square : public Figure {
+private:
+    double side;
+public:
+    Square(double a = 0) : Figure(), side(a) {}
+
+    double Area() const {
+        return static_cast<double>(side * side);
+    }
+};

@@ -1,0 +1,22 @@
+#include <iostream>
+
+class C {
+private:
+    static int counter;
+    const int id;
+
+public:
+    C(): id(++counter) {
+        if (id <= 3) {
+            std::cout << "constructor C() " << id << "\n";
+        }
+    }
+
+    ~C() {
+        if (id <= 3) {
+            std::cout << "destructor C() " << id << "\n";
+        }
+    }
+};
+
+int C::counter = 0;

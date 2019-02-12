@@ -1,0 +1,8 @@
+#include "c.h"
+
+int main() {
+    C *c1 = new C();
+    C c2 = std::move(*c1);
+    delete c1;
+    return 0;
+}

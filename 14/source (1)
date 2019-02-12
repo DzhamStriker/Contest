@@ -1,0 +1,42 @@
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+#include "query.h"
+
+bool Comparing(const std::pair<std::string, int> &a, const std::pair<std::string, int> &b) {
+    if (a.second != b.second) {
+        return a.second > b.second;
+    } else {
+        return a.first < b.first;
+    }
+}
+
+const int RESULTS_TO_PRINT = 3;
+
+int main() {
+    std::map<std::string, int> login_stats;
+    std::string line;
+    while (std::getline(std::cin, line)) {
+        Query* q = parse_query(line.c_str());
+
+        if (q->action == ACTION_COMMIT) {
+            if (login_stats.find(q->sender_login) == login_stats.end()) {
+                login_stats[q->sender_login] = 1;
+            } else {
+                login_stats[q->sender_login] += 1;
+            }
+        }
+        delete q;
+    }
+
+    std::vector<std::pair<std::string, int>> stats_vec(
+        login_stats.begin(), login_stats.end());
+    std::sort(stats_vec.begin(), stats_vec.end(), Comparing);
+    
+
+    for (int i = 0; i < std::min(RESULTS_TO_PRINT, static_cast<int> (stats_vec.size())); ++i) {
+        std::cout << stats_vec[i].first << " " << stats_vec[i].second << "\n";
+    }
+}

@@ -1,0 +1,8 @@
+#include "c.h"
+
+int main() {
+    C c1;
+    D d1(c1, c1, &c1);
+    C c3();
+    D d2(d1);
+}

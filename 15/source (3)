@@ -1,0 +1,40 @@
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class Serializer {
+public:
+    virtual void BeginArray() {}
+    virtual void AddArrayItem(const std::string & s) {}
+    virtual void EndArray() {}
+};
+
+class JsonSerializer : public Serializer {
+private:
+    bool isArray = false;
+
+public:
+    void BeginArray() {
+        if (!isArray) {
+            cout << '[';
+        } else {
+            cout << ",[";
+            isArray = false;
+        }
+    }
+
+    void AddArrayItem(const std::string & s) {
+        if (!isArray) {
+            cout << '"' << s << '"';
+            isArray = true;
+        } else {
+            cout << ',' << '"' << s << '"';
+        }
+    }
+
+    void EndArray() {
+        cout << "]";
+        isArray = true;
+    }
+};

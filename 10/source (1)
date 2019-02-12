@@ -1,0 +1,8 @@
+#include "c.h"
+
+int main() {
+    C *c1 = new C();
+    C *c2 = new C(*c1);
+    delete c2;
+    delete c1;
+}
